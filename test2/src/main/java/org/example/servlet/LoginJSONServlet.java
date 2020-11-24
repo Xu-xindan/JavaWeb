@@ -11,7 +11,7 @@ import java.io.PrintWriter;
 //注解的使用：（）包裹多个属性，属性名=属性值，多个之间，间隔 属性名为value时可以省略
 //Servlet定义服务：注意服务路径必须是/开始 否则tomcat启动会报错
 @WebServlet("/login")
-public class LoginServlet extends HttpServlet {
+public class LoginJSONServlet extends HttpServlet {
 
     //每次http请求映射到某个Servlet的资源路径，都会调用service生命周期方法
     //如果请求方法没有重写，就调用父类的doXXX（对应请求方法），返回405
@@ -30,6 +30,7 @@ public class LoginServlet extends HttpServlet {
         System.out.printf("========用户名(%s)密码(%s) %n",u,p);
         //返回响应数据
         PrintWriter pw=resp.getWriter();//response获取io输出流
+
         pw.println("登陆失败");
         pw.println("<h3>用户名："+u+"或密码错误</h3>");
         pw.flush();//有缓冲的io操作，需要刷新缓冲区
