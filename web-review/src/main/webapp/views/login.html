@@ -1,76 +1,21 @@
 <!DOCTYPE html>
-<!-- 注释的写法：html中只能写为尖括号!-- --尖括号, js里边可以写//               -->
 <html lang="en">
-<!-- 头标签：不做为网页展示的内容，设置网页配置内容 -->
 <head>
-    <!-- 设置网页编码格式 -->
     <meta charset="UTF-8">
-    <!-- 设置网页标题 -->
-    <title>Title</title>
-    <!-- js的使用方式：1. 引入一个js文件，在js中写代码 -->
+    <title>登录</title>
     <script type="text/javascript" src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.js"></script>
-    <script>
-        //js的使用方式：2. 这里写js代码：html中，直接写js
-    </script>
-    <!-- css的使用方式：1. 引入css文件 -->
-    <link rel="stylesheet" href="替换为css文件路径">
-    <!-- css的使用方式：2. 直接在html里写css样式 -->
-    <style>
-        p{
-            color: aquamarine;
-        }
-    </style>
+    <script type="text/javascript" src="../js/login.js"></script>
 </head>
-<!-- body标签：网页要展示的内容，一般叫做dom元素/dom标签 -->
 <body>
-<p>这个
-    段落
-    演示了分行的效果</p>
-<p>这个<br>段落<br>演示了分行的效果</p>
-<a href="www.baidu.com">点我跳转</a><br>
-<img src="haha" alt="哈哈">
-<img src="http://maven.apache.org/images/apache-maven-project.png" alt>
-<p>无序列表</p>
-<ul>
-    <li>1</li>
-    <li>2</li>
-</ul>
-<p>有序列表</p>
-<ol>
-    <li>1</li>
-    <li>2</li>
-</ol>
-<p>表格</p>
-<table border="1" cellspacing="0">
-    <tr>
-        <th>Header 1</th>
-        <th>Header 2</th>
-    </tr>
-    <tr>
-        <td>row 1, cell 1</td>
-        <td>row 1, cell 2</td>
-    </tr>
-    <tr>
-        <td>row 2, cell 1</td>
-        <td>row 2, cell 2</td>
-    </tr>
-</table>
-<form action="xxx">
-    用户名：<input type="text">
-    <br>
-    单选框：<input type="radio" name="r">
-    <input type="radio" name="r">
-    <br>
-    复选框<input type="checkbox">
-    <br>
-    <input type="reset" value="重置">
-    <input type="submit" value="提交">
-</form>
-<br>
-<h2>div/span<h2>
-    <div style="height: 50px;background: aqua"></div>
-    <div style="height: 50px;background: bisque"></div>
-    <div id="div3"></div>
-    <div id="div4"></div>
+    <h3>用户登录</h3>
+    <form onsubmit="return login(this)">
+        用户名：<input type="text" name="username" required>
+        <br><br>
+        密码：<input type="password" name="password" required>
+        <br><br>
+        <p id="login_error" style="color: red; display: none"></p>
+        <input type="submit" value="登录">
+        <input type="reset" value="重置">
+    </form>
 </body>
 </html>
