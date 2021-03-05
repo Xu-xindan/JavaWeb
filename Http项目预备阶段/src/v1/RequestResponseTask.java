@@ -34,13 +34,17 @@ public class RequestResponseTask implements Runnable {
             printWriter.printf("<h1>正常工作了</h1>");
             // 刷新，把数据写入 TCP 发送缓冲区
             printWriter.flush();
-
-            socket.close();
-            System.out.println("一条 TCP 连接已经释放");
         } catch (IOException | InterruptedException exc) {
             // 因为单次的请求响应周期错误，不应该影响其他请求响应周期
             // 所以，我们只做打印，不终止进程
             exc.printStackTrace(System.out);
+        } finally {
+            try {
+                socket.close();
+                System.out.println("一条 TCP 连接已经释放");
+            } catch (IOException exc) {
+                exc.printStackTrace(System.out);
+            }
         }
     }
 }
