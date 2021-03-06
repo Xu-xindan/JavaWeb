@@ -3,24 +3,27 @@ package v3;
 import java.io.*;
 import java.net.Socket;
 import java.net.URLDecoder;
+import java.net.URLEncoder;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
 
 public class RequestResponseTask implements Runnable {
-    private static final String DOC_BASE="C:\\Users\\xxd\\Desktop\\锦囊\\java\\Http项目预备阶段\\docBase";
+    // TODO: 自己运行代码时，需要修改成自己的绝对路径
+    private static final String DOC_BASE = "C:\\Users\\xxd\\Desktop\\锦囊\\java\\Http项目预备阶段\\docBase";
     private final Socket socket;
 
     public RequestResponseTask(Socket socket) {
         this.socket = socket;
     }
 
-    private static final Map<String,String> mimeTypeMap=new HashMap<>();
+    // Map<suffix, contentType>
+    private static final Map<String, String> mimeTypeMap = new HashMap<>();
     static {
-        mimeTypeMap.put("txt","txt/plain");
+        mimeTypeMap.put("txt", "text/plain");
         mimeTypeMap.put("html", "text/html");
         mimeTypeMap.put("js", "application/javascript");
-        mimeTypeMap.put("jpg","image/jpeg");
+        mimeTypeMap.put("jpg", "image/jpeg");
     }
 
     @Override
@@ -81,11 +84,16 @@ public class RequestResponseTask implements Runnable {
                 // 从 cookie 中获取 username
                 String cookie = headers.getOrDefault("cookie", "");
                 System.out.println("Cookie value:" + cookie);
-                for(String cookieKV:cookie.split(";")){
-                    String[] kv=cookieKV.split("=");
-                    String cookieName=kv[0];
-                    String cookieValue=kv[1];
-                    if()
+                for (String cookieKV : cookie.split(";")) {
+                    if (cookieKV.isEmpty()) {
+                        continue;
+                    }
+                    String[] kv = cookieKV.split("=");
+                    String cookieName = kv[0];
+                    String cookieValue = kv[1];
+                    if (cookieName.equals("username")) {
+                        username = cookieValue;
+                    }
                 }
 
                 printWriter.printf("HTTP/1.0 200 OK\r\n");
